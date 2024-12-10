@@ -6,7 +6,7 @@ const ReletedProducts = () => {
   const [reletedProducts, setReletedProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/reletedproducts")
+    fetch(`${process.env.REACT_APP_API_URL}/reletedproducts`)
       .then((res) => res.json())
       .then((data) => setReletedProducts(data));
   }, []);

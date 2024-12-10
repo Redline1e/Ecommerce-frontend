@@ -21,7 +21,7 @@ const ShopContextProvider = (props) => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:4000/allproducts");
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/allproducts`);
         if (!response.ok) {
           throw new Error("Failed to fetch products. Please check your API.");
         }
@@ -37,7 +37,7 @@ const ShopContextProvider = (props) => {
 
     fetchProducts();
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/getcart", {
+      fetch(`${process.env.REACT_APP_API_URL}/getcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -57,7 +57,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch(`${process.env.REACT_APP_API_URL}/addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -79,7 +79,7 @@ const ShopContextProvider = (props) => {
     }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch(`${process.env.REACT_APP_API_URL}/removefromcart`, {
         method: "DELETE",
         headers: {
           Accept: "application/json", 
